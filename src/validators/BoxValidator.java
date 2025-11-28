@@ -4,6 +4,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ *
+ * @author mariam
+ */
+
 public class BoxValidator implements SudokuValidator {
         private final Integer boxRow; 
     private final Integer boxCol; 
