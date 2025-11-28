@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/AltAWKEl/Desktop/Lab9_SudokuSolutionVerifier/SudokuSolutionVerifier/src/app/SudokuApp.java</file>
+            <file>file:/C:/Users/AltAWKEl/Desktop/Lab9_SudokuSolutionVerifier/SudokuSolutionVerifier/src/board/SudokuBoard.java</file>
+            <file>file:/C:/Users/AltAWKEl/Desktop/Lab9_SudokuSolutionVerifier/SudokuSolutionVerifier/src/validators/SudokuValidator.java</file>
+            <file>file:/C:/Users/AltAWKEl/Desktop/Lab9_SudokuSolutionVerifier/SudokuSolutionVerifier/src/validators/RowValidator.java</file>
+            <file>file:/C:/Users/AltAWKEl/Desktop/Lab9_SudokuSolutionVerifier/SudokuSolutionVerifier/src/validators/ColValidator.java</file>
+            <file>file:/C:/Users/AltAWKEl/Desktop/Lab9_SudokuSolutionVerifier/SudokuSolutionVerifier/src/validators/BoxValidator.java</file>
+            <file>file:/C:/Users/AltAWKEl/Desktop/Lab9_SudokuSolutionVerifier/SudokuSolutionVerifier/src/validators/CombinedValidator.java</file>
+            <file>file:/C:/Users/AltAWKEl/Desktop/Lab9_SudokuSolutionVerifier/SudokuSolutionVerifier/src/modes/ModeValidator.java</file>
+            <file>file:/C:/Users/AltAWKEl/Desktop/Lab9_SudokuSolutionVerifier/SudokuSolutionVerifier/src/modes/Mode0Validator.java</file>
+            <file>file:/C:/Users/AltAWKEl/Desktop/Lab9_SudokuSolutionVerifier/SudokuSolutionVerifier/src/modes/Mode3Validator.java</file>
+            <file>file:/C:/Users/AltAWKEl/Desktop/Lab9_SudokuSolutionVerifier/SudokuSolutionVerifier/src/modes/Mode27Validator.java</file>
+            <file>file:/C:/Users/AltAWKEl/Desktop/Lab9_SudokuSolutionVerifier/SudokuSolutionVerifier/src/factory/ValidatorFactory.java</file>
+            <file>file:/C:/Users/AltAWKEl/Desktop/Lab9_SudokuSolutionVerifier/SudokuSolutionVerifier/src/model/ValidationResult.java</file>
+            <file>file:/C:/Users/AltAWKEl/Desktop/Lab9_SudokuSolutionVerifier/SudokuSolutionVerifier/src/utils/CSVReader.java</file>
+        </group>
+    </open-files>
+</project-private>
