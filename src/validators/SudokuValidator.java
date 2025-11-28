@@ -4,10 +4,13 @@
  */
 package validators;
 
+import java.util.List;
+
 /**
  *
- * @author AltAWKEl
+ * @author mariam
  */
-public class SudokuValidator {
-    
+public interface SudokuValidator {
+
+      boolean validate(int[][] board, List<String> errors);
 }
