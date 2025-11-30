@@ -35,17 +35,17 @@ public class BoxValidator implements SudokuValidator {
     }
 
     public boolean validateAllBoxes(int[][] board, List<String> errors) {
+        boolean allValid = true;
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 3; col++) {
                 if (!validateSingleBox(board, errors, row, col)) {
-                    return false;
+                    allValid = false; 
                 }
             }
         }
-        return true;
+        return allValid;
     }
 
-    // Public method for validating any box
     public boolean validateSingleBox(int[][] board, List<String> errors, int boxRow, int boxCol) {
         Set<Integer> seen = new HashSet<>();
         Set<Integer> reportedDuplicates = new HashSet<>();

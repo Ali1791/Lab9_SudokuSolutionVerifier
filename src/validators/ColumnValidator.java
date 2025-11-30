@@ -31,14 +31,15 @@ public class ColumnValidator implements SudokuValidator {
         }
     }
 
-    public boolean validateAllColumns(int[][] board, List<String> errors) {
-        for (int i = 0; i < 9; i++) {
-            if (!validateSingleColumn(board, errors, i)) {
-                return false;
-            }
+ public boolean validateAllColumns(int[][] board, List<String> errors) {
+    boolean allValid = true;
+    for (int i = 0; i < 9; i++) {
+        if (!validateSingleColumn(board, errors, i)) {
+            allValid = false;
         }
-        return true;
     }
+    return allValid;
+}
 
     public boolean validateSingleColumn(int[][] board, List<String> errors, int columnIndex) {
         Set<Integer> seen = new HashSet<>();

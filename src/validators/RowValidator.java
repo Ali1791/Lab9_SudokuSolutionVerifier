@@ -32,12 +32,13 @@ public class RowValidator implements SudokuValidator {
     }
 
     public boolean validateAllRows(int[][] board, List<String> errors) {
+        boolean allValid = true;
         for (int i = 0; i < 9; i++) {
             if (!validateSingleRow(board, errors, i)) {
-                return false;
+                allValid = false; 
             }
         }
-        return true;
+        return allValid;
     }
 
     public boolean validateSingleRow(int[][] board, List<String> errors, int rowIndex) {
