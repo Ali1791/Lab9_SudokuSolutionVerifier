@@ -48,35 +48,30 @@ public class BoxValidator implements SudokuValidator {
     // Public method for validating any box
     public boolean validateSingleBox(int[][] board, List<String> errors, int boxRow, int boxCol) {
         Set<Integer> seen = new HashSet<>();
+        Set<Integer> reportedDuplicates = new HashSet<>();
         int startRow = boxRow * 3;
         int startCol = boxCol * 3;
-        int boxNumber = boxRow * 3 + boxCol + 1;// to get the box number 
+        int boxNumber = boxRow * 3 + boxCol + 1;
 
+        boolean flag = true;
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 int num = board[startRow + i][startCol + j];
-                if (num!=0 && !seen.add(num)) {
-                     errors.add("BOX " + boxNumber + ", #" + num + ", [" + getBoxAsString(board, boxRow, boxCol) + "]");
-                return false;
+                if (num != 0 && !seen.add(num) && !reportedDuplicates.contains(num)) {
+                    StringBuilder positions = new StringBuilder();
+                    for (int x = 0; x < 3; x++) {
+                        for (int y = 0; y < 3; y++) {
+                            if (board[startRow + x][startCol + y] == num) {
+                                positions.append(x * 3 + y + 1).append(" ");
+                            }
+                        }
+                    }
+                    errors.add("BOX " + boxNumber + ", #" + num + ", [" + positions.toString().trim() + "]");
+                    reportedDuplicates.add(num);
+                    flag = false;
                 }
             }
         }
-        return true;
-    }
-
-    private String getBoxAsString(int[][] board, int boxRow, int boxCol) {
-        StringBuilder sb = new StringBuilder();
-        int startRow = boxRow * 3;
-        int startCol = boxCol * 3;
-
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                sb.append(board[startRow + i][startCol + j]);
-                if (!(i == 2 && j == 2)) { // Not the last element
-                    sb.append(", ");
-                }
-            }
-        }
-        return sb.toString();
+        return flag;
     }
 }

@@ -42,25 +42,23 @@ public class RowValidator implements SudokuValidator {
 
     public boolean validateSingleRow(int[][] board, List<String> errors, int rowIndex) {
         Set<Integer> seen = new HashSet<>();
+        Set<Integer> reportedDuplicates = new HashSet<>(); // to check whether we already checked that duplicate or not
+        boolean flag = true;
+
         for (int j = 0; j < 9; j++) {
             int num = board[rowIndex][j];
-            if ( num != 0 && !seen.add(num)) {
-                errors.add("ROW " + (rowIndex + 1) + ", #" + num + ", [" + getRowAsString(board, rowIndex) + "]");
-                return false;
+            if (num != 0 && !seen.add(num) && !reportedDuplicates.contains(num)) {
+                StringBuilder positions = new StringBuilder();// to check the positions of the duplicate
+                for (int col = 0; col < 9; col++) {
+                    if (board[rowIndex][col] == num) {
+                        positions.append(col + 1).append(" ");
+                    }
+                }
+                errors.add("ROW " + (rowIndex + 1) + ", #" + num + ", [" + positions.toString().trim() + "]");
+                reportedDuplicates.add(num);
+                flag = false;
             }
         }
-        return true;
+        return flag;
     }
-
-    private String getRowAsString(int[][] board, int rowIndex) {
-        StringBuilder sb = new StringBuilder();
-        for (int j = 0; j < 9; j++) {
-            sb.append(board[rowIndex][j]);
-            if (j < 8) {
-                sb.append(", ");
-            }
-        }
-        return sb.toString();
-    }
-
 }

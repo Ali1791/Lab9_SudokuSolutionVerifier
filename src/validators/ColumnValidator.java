@@ -10,7 +10,7 @@ import java.util.Set;
  */
 public class ColumnValidator implements SudokuValidator {
 
-        private final Integer columnIndex;//to allow null
+    private final Integer columnIndex;//to allow null
 
     public ColumnValidator() {
         this.columnIndex = null;
@@ -19,9 +19,10 @@ public class ColumnValidator implements SudokuValidator {
     public ColumnValidator(int columnIndex) {
         this.columnIndex = columnIndex;
     }
+
     @Override
     public boolean validate(int[][] board, List<String> errors) {
-         if (columnIndex != null) {
+        if (columnIndex != null) {
             // Validate single column
             return validateSingleColumn(board, errors, columnIndex);
         } else {
@@ -30,36 +31,33 @@ public class ColumnValidator implements SudokuValidator {
         }
     }
 
-        public boolean validateAllColumns(int[][] board, List<String> errors) {
+    public boolean validateAllColumns(int[][] board, List<String> errors) {
         for (int i = 0; i < 9; i++) {
-                if (!validateSingleColumn(board, errors,i)) {
-                    return false;
-                }
+            if (!validateSingleColumn(board, errors, i)) {
+                return false;
             }
+        }
         return true;
     }
 
-      public boolean validateSingleColumn(int[][] board, List<String> errors,int columnIndex) {
+    public boolean validateSingleColumn(int[][] board, List<String> errors, int columnIndex) {
         Set<Integer> seen = new HashSet<>();
+        Set<Integer> reportedDuplicates = new HashSet<>();
+        boolean flag = true;
         for (int i = 0; i < 9; i++) {
             int num = board[i][columnIndex];
-            if (num != 0 && !seen.add(num)) {
-                 errors.add("COL " + (columnIndex + 1) + ", #" + num + ", [" + getColumnAsString(board, columnIndex) + "]");
-                 return false;
+            if (num != 0 && !seen.add(num) && !reportedDuplicates.contains(num)) {
+                StringBuilder positions = new StringBuilder();
+                for (int row = 0; row < 9; row++) {
+                    if (board[row][columnIndex] == num) {
+                        positions.append(row + 1).append(" ");
+                    }
+                }
+                errors.add("COL " + (columnIndex + 1) + ", #" + num + ", [" + positions.toString().trim() + "]");
+                reportedDuplicates.add(num);
+                flag = false;
             }
         }
-        return true;
+        return flag;
     }
-      
-    private String getColumnAsString(int[][] board, int columnIndex) {
-    StringBuilder sb = new StringBuilder();
-    for (int i = 0; i < 9; i++) {
-        sb.append(board[i][columnIndex]);
-        if (i < 8) {
-            sb.append(", ");
-        }
-    }
-    return sb.toString();
-}
-
 }
