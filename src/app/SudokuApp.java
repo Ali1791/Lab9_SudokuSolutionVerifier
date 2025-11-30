@@ -5,8 +5,10 @@
 package app;
 import board.SudokuBoard;
 import factory.ValidatorFactory;
+import java.util.ArrayList;
+import java.util.List;
+import model.ValidationResult;
 import modes.ModeValidator;
-import utils.CSVReader;
 /**
  *
  * @author Nour
@@ -22,15 +24,18 @@ public class SudokuApp {
      
         int mode=Integer.parseInt(args[1]);
         ValidatorFactory validatorFactory=new ValidatorFactory();
-            ModeValidator ModeValidator = validatorFactory.getType(mode);
+            ModeValidator modeValidator = validatorFactory.getType(mode);
             SudokuBoard board=new SudokuBoard();
-        board.importBoardFromFile(filename);
-        if(board.getBoard()!=null)
-        if(ModeValidator.validate(board.getBoard())) System.out.println("Valid Board.");
-        else System.out.println("Invalid Board.");}
+            board.importBoardFromFile(filename);
+            List<String>errors=new ArrayList<>();
+            boolean isValid=modeValidator.validate(board.getBoard(), errors);
+            ValidationResult result=new ValidationResult(isValid,errors);
+            result.printResult();
+       
         
      
      
     }
     
+}
 }
