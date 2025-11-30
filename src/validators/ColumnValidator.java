@@ -44,11 +44,22 @@ public class ColumnValidator implements SudokuValidator {
         for (int i = 0; i < 9; i++) {
             int num = board[i][columnIndex];
             if (!seen.add(num)) {
-                errors.add("Duplicate number " + num + " found in column " + columnIndex);
-                return false;
+                 errors.add("COL " + (columnIndex + 1) + ", #1, [" + getColumnAsString(board, columnIndex) + "]");
+                 return false;
             }
         }
         return true;
     }
+      
+    private String getColumnAsString(int[][] board, int columnIndex) {
+    StringBuilder sb = new StringBuilder();
+    for (int i = 0; i < 9; i++) {
+        sb.append(board[i][columnIndex]);
+        if (i < 8) {
+            sb.append(", ");
+        }
+    }
+    return sb.toString();
+}
 
 }

@@ -8,10 +8,10 @@ import java.util.Set;
  *
  * @author mariam
  */
-
 public class BoxValidator implements SudokuValidator {
-        private final Integer boxRow; 
-    private final Integer boxCol; 
+
+    private final Integer boxRow;
+    private final Integer boxCol;
 
     public BoxValidator() {
         this.boxRow = null;
@@ -23,7 +23,7 @@ public class BoxValidator implements SudokuValidator {
         this.boxCol = boxCol;
     }
 
-     @Override
+    @Override
     public boolean validate(int[][] board, List<String> errors) {
         if (boxRow != null && boxCol != null) {
             // Validate single box
@@ -50,18 +50,34 @@ public class BoxValidator implements SudokuValidator {
         Set<Integer> seen = new HashSet<>();
         int startRow = boxRow * 3;
         int startCol = boxCol * 3;
-        
+        int boxNumber = boxRow * 3 + boxCol + 1;// to get the box number 
+
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 int num = board[startRow + i][startCol + j];
                 if (!seen.add(num)) {
-                    errors.add("Duplicate number " + num + " found in box (" + boxRow + "," + boxCol + ")");
-                    return false;
+                     errors.add("BOX " + boxNumber + ", #1, [" + getBoxAsString(board, boxRow, boxCol) + "]");
+                return false;
                 }
             }
         }
         return true;
     }
 
+    private String getBoxAsString(int[][] board, int boxRow, int boxCol) {
+        StringBuilder sb = new StringBuilder();
+        int startRow = boxRow * 3;
+        int startCol = boxCol * 3;
+
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                sb.append(board[startRow + i][startCol + j]);
+                if (!(i == 2 && j == 2)) { // Not the last element
+                    sb.append(", ");
+                }
+            }
+        }
+        return sb.toString();
+    }
 
 }

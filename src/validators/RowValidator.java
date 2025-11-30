@@ -8,8 +8,7 @@ import java.util.Set;
  *
  * @author mariam
  */
-
-public class RowValidator  implements SudokuValidator {
+public class RowValidator implements SudokuValidator {
 
     private final Integer rowIndex;//to allow null
 
@@ -21,7 +20,7 @@ public class RowValidator  implements SudokuValidator {
         this.rowIndex = rowIndex;
     }
 
-  @Override
+    @Override
     public boolean validate(int[][] board, List<String> errors) {
         if (rowIndex != null) {
             // Validate single row
@@ -32,26 +31,36 @@ public class RowValidator  implements SudokuValidator {
         }
     }
 
-      public boolean validateAllRows(int[][] board, List<String> errors) {
-        for(int i=0 ; i<9; i++){
-             if(!validateSingleRow(board, errors,i)){
-                    return false;
-                }
-        }
-    return true;
-    }
-
-      public boolean validateSingleRow(int[][] board, List<String> errors,int rowIndex) {
-        Set<Integer> seen = new HashSet<>();
-        for (int j = 0; j < 9; j++) {
-            int num = board[rowIndex][j];
-            if (!seen.add(num)) {
-                errors.add("Duplicate number " + num + " found in row " + rowIndex);
+    public boolean validateAllRows(int[][] board, List<String> errors) {
+        for (int i = 0; i < 9; i++) {
+            if (!validateSingleRow(board, errors, i)) {
                 return false;
             }
         }
         return true;
     }
 
+    public boolean validateSingleRow(int[][] board, List<String> errors, int rowIndex) {
+        Set<Integer> seen = new HashSet<>();
+        for (int j = 0; j < 9; j++) {
+            int num = board[rowIndex][j];
+            if (!seen.add(num)) {
+                errors.add("ROW " + (rowIndex + 1) + ", #1, [" + getRowAsString(board, rowIndex) + "]");
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private String getRowAsString(int[][] board, int rowIndex) {
+        StringBuilder sb = new StringBuilder();
+        for (int j = 0; j < 9; j++) {
+            sb.append(board[rowIndex][j]);
+            if (j < 8) {
+                sb.append(", ");
+            }
+        }
+        return sb.toString();
+    }
 
 }
