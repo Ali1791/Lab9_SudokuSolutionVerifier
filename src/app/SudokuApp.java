@@ -6,6 +6,7 @@ package app;
 import board.SudokuBoard;
 import factory.ValidatorFactory;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import model.ValidationResult;
 import modes.ModeValidator;
@@ -27,7 +28,7 @@ public class SudokuApp {
             ModeValidator modeValidator = validatorFactory.getType(mode);
             SudokuBoard board=new SudokuBoard();
             board.importBoardFromFile(filename);
-            List<String>errors=new ArrayList<>();
+            List<String>errors=Collections.synchronizedList(new ArrayList<>());
             boolean isValid=modeValidator.validate(board.getBoard(), errors);
             ValidationResult result=new ValidationResult(isValid,errors);
             result.printResult();
