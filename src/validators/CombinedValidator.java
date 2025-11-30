@@ -24,9 +24,11 @@ public class CombinedValidator implements SudokuValidator {
 
     @Override
     public boolean validate(int[][] board, List<String> errors) {
-        return rowValidator.validate(board, errors)
-                && colValidator.validate(board, errors)
-                && boxValidator.validate(board, errors);
+        boolean rowValid = rowValidator.validate(board, errors);
+        boolean colValid = colValidator.validate(board, errors);
+        boolean boxValid = boxValidator.validate(board, errors);
+
+        return rowValid && colValid && boxValid;
     }
 
 }
