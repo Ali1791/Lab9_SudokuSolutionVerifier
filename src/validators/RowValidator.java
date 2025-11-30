@@ -44,8 +44,8 @@ public class RowValidator implements SudokuValidator {
         Set<Integer> seen = new HashSet<>();
         for (int j = 0; j < 9; j++) {
             int num = board[rowIndex][j];
-            if (!seen.add(num)) {
-                errors.add("ROW " + (rowIndex + 1) + ", #1, [" + getRowAsString(board, rowIndex) + "]");
+            if ( num != 0 && !seen.add(num)) {
+                errors.add("ROW " + (rowIndex + 1) + ", #" + num + ", [" + getRowAsString(board, rowIndex) + "]");
                 return false;
             }
         }

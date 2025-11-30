@@ -55,8 +55,8 @@ public class BoxValidator implements SudokuValidator {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 int num = board[startRow + i][startCol + j];
-                if (!seen.add(num)) {
-                     errors.add("BOX " + boxNumber + ", #1, [" + getBoxAsString(board, boxRow, boxCol) + "]");
+                if (num!=0 && !seen.add(num)) {
+                     errors.add("BOX " + boxNumber + ", #" + num + ", [" + getBoxAsString(board, boxRow, boxCol) + "]");
                 return false;
                 }
             }
@@ -79,5 +79,4 @@ public class BoxValidator implements SudokuValidator {
         }
         return sb.toString();
     }
-
 }

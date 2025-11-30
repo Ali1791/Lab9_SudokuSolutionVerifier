@@ -43,8 +43,8 @@ public class ColumnValidator implements SudokuValidator {
         Set<Integer> seen = new HashSet<>();
         for (int i = 0; i < 9; i++) {
             int num = board[i][columnIndex];
-            if (!seen.add(num)) {
-                 errors.add("COL " + (columnIndex + 1) + ", #1, [" + getColumnAsString(board, columnIndex) + "]");
+            if (num != 0 && !seen.add(num)) {
+                 errors.add("COL " + (columnIndex + 1) + ", #" + num + ", [" + getColumnAsString(board, columnIndex) + "]");
                  return false;
             }
         }
